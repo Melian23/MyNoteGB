@@ -39,5 +39,13 @@ public class FragmentDescriptionNotes extends Fragment {
         TextView etName = view.findViewById(R.id.textName);
         notes = getArguments().getParcelable(ARG_NOTES);
         etName.setText(notes.getName());
+
+        TextView etDescription = view.findViewById(R.id.textDescription);
+        notes = getArguments().getParcelable(ARG_NOTES);
+        etDescription.setText(notes.getDescription());
+
+        TextView etData = view.findViewById(R.id.textData);
+        notes = getArguments().getParcelable(ARG_NOTES);
+        etData.setText(notes.getData());
     }
 }

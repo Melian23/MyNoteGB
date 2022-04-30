@@ -28,12 +28,12 @@ public class InMemoryNotesRepository implements NotesRepository {
     public List<Notes> getAll() {
         ArrayList<Notes> result = new ArrayList<>();
 
-        result.add(new Notes("Заметка 1", 45545, "Первая заметка"));
-        result.add(new Notes("Заметка 2", 45545, "Вторая заметка"));
-        result.add(new Notes("Заметка 3", 45545, "Третья заметка"));
-        result.add(new Notes("Заметка 4", 45545, "Четвертая заметка"));
-        result.add(new Notes("Заметка 5", 45545, "Пятая заметка"));
-        result.add(new Notes("Заметка 6", 45545, "Шестая заметка"));
+        result.add(new Notes("Заметка 1", "21.01.2022", "Первая заметка"));
+        result.add(new Notes("Заметка 2", "21.02.2022", "Вторая заметка"));
+        result.add(new Notes("Заметка 3", "28.03.2022", "Третья заметка"));
+        result.add(new Notes("Заметка 4", "11.05.2022", "Четвертая заметка"));
+        result.add(new Notes("Заметка 5", "21.01.2022", "Пятая заметка"));
+        result.add(new Notes("Заметка 6", "04.09.2022", "Шестая заметка"));
 
         return result;
     }

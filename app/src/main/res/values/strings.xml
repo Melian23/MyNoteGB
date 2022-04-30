@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">MyNoteGB</string>
     <string name="def">Тост</string>
+    <string name="data">Дата заметки</string>
+    <string name="name">Название заметки</string>
+    <string name="description">Описание</string>
 </resources>

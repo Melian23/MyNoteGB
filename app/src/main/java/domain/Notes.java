@@ -18,15 +18,15 @@ public class Notes implements Parcelable {
     };
     private String name;
     private String description;
-    private int data;
+    private String data;
 
     protected Notes(Parcel in) {
         name = in.readString();
         description = in.readString();
-        data = in.readInt();
+        data = in.readString();
     }
 
-    public Notes(String name, int data, String description) {
+    public Notes(String name, String data, String description) {
         this.name = name;
         this.description = description;
         this.data = data;
@@ -43,11 +43,11 @@ public class Notes implements Parcelable {
         this.name = name;
     }
 
-    public int getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(int data) {
+    public void setData(String data) {
         this.data = data;
     }
 
@@ -68,6 +68,6 @@ public class Notes implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(name);
         parcel.writeString(description);
-        parcel.writeInt(data);
+        parcel.writeString(data);
     }
 }
