@@ -4,4 +4,9 @@
     <string name="data">Дата заметки</string>
     <string name="name">Название заметки</string>
     <string name="description">Описание</string>
+    <string name="app_title">Блокнот</string>
+    <string name="nameNew">Наименование</string>
+    <string name="dataNew">Дата</string>
+    <string name="descriptionNew">Подробнее</string>
+    <string name="app_name_new">Редактирование</string>
 </resources>

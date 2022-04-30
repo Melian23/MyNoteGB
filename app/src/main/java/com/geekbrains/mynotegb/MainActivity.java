@@ -1,7 +1,5 @@
 package com.geekbrains.mynotegb;
 
-import static com.geekbrains.mynotegb.FragmentDescriptionNotes.LIST_NOTES;
-
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -15,9 +13,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        Notes note = getIntent().getParcelableExtra(LIST_NOTES);
 
         if (savedInstanceState == null) {
 

@@ -4,11 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import java.util.List;
@@ -34,6 +37,27 @@ public class FragmentListNotes extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Toolbar toolbar = view.findViewById(R.id.toolbarMenu);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(requireContext(), "Меню", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button btnNew = view.findViewById(R.id.newNote);
+        btnNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                getParentFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.listNote, FragmentNewNote.newInstance())
+                        .addToBackStack("")
+                        .commit();
+            }
+        });
+
         LinearLayout container = view.findViewById(R.id.container_list);
 
         List<Notes> notes = InMemoryNotesRepository.getINSTANCE(requireContext()).getAll();
@@ -50,6 +74,15 @@ public class FragmentListNotes extends Fragment {
                             .replace(R.id.listNote, FragmentDescriptionNotes.newInstance(note))
                             .addToBackStack("details")
                             .commit();
+                }
+
+            });
+
+            Button btnDelete = view.findViewById(R.id.delete);
+            btnDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
                 }
             });
 
