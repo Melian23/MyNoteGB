@@ -21,7 +21,7 @@ public class FragmentNewNote extends Fragment {
     public static FragmentNewNote newInstance() {
         FragmentNewNote fragment = new FragmentNewNote();
         Bundle args = new Bundle();
-        args.putParcelable(ARG_NOTES, new Notes("New", "2222","note"));
+        args.putParcelable(ARG_NOTES, new Notes("New", "2222", "note"));
         fragment.setArguments(args);
         return fragment;
     }
@@ -38,13 +38,17 @@ public class FragmentNewNote extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Toolbar toolbar = view.findViewById(R.id.toolbarNewNote);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getParentFragmentManager()
-                        .popBackStack();
-            }
-        });
+
+        if (requireActivity() instanceof ToolbarHolder)
+            ((ToolbarHolder) requireContext()).setToolbar(toolbar);
+
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                getParentFragmentManager()
+//                        .popBackStack();
+//            }
+//        });
 
         TextView etNewName = view.findViewById(R.id.NewName);
         etNewName.setText("");

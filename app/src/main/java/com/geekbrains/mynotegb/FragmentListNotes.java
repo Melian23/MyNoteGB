@@ -40,6 +40,9 @@ public class FragmentListNotes extends Fragment {
 
         Toolbar toolbar = view.findViewById(R.id.toolbarMenu);
 
+        if (requireActivity() instanceof ToolbarHolder)
+            ((ToolbarHolder) requireContext()).setToolbar(toolbar);
+
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -56,12 +59,12 @@ public class FragmentListNotes extends Fragment {
                 return false;
             }
         });
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(requireContext(), "Меню", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(requireContext(), "Меню", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         Button btnNew = view.findViewById(R.id.newNote);
         btnNew.setOnClickListener(new View.OnClickListener() {

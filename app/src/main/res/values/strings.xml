@@ -14,4 +14,13 @@
     <string name="action_sort">sort</string>
     <string name="action_share">share</string>
     <string name="action_add">add photo</string>
+    <string name="action_setting">Настройки</string>
+    <string name="action_about">О приложении</string>
+    <string name="what_about">Как вам приложение?</string>
+    <string name="setting">Настройки</string>
+    <string name="toolbar_about">О приложении</string>
+    <string name="toolbar_setting">Настройки</string>
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
+    <string name="action_notes">Заметки</string>
 </resources>

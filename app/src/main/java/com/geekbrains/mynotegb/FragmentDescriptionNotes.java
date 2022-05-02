@@ -40,10 +40,15 @@ public class FragmentDescriptionNotes extends Fragment {
 
         Toolbar toolbar = view.findViewById(R.id.toolbar);
 
+        if (requireActivity() instanceof ToolbarHolder)
+            ((ToolbarHolder) requireContext()).setToolbar(toolbar);
+
+        ((MainActivity) requireContext()).setToolbar(toolbar);
+
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.action_share:
                         Toast.makeText(requireContext(), "Поделиться", Toast.LENGTH_SHORT).show();
                         return true;
@@ -55,13 +60,13 @@ public class FragmentDescriptionNotes extends Fragment {
             }
         });
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getParentFragmentManager()
-                        .popBackStack();
-            }
-        });
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                getParentFragmentManager()
+//                        .popBackStack();
+//            }
+//        });
 
         TextView etName = view.findViewById(R.id.textName);
         notes = getArguments().getParcelable(ARG_NOTES);
