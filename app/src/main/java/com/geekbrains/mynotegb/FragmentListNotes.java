@@ -2,6 +2,7 @@ package com.geekbrains.mynotegb;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -38,6 +39,23 @@ public class FragmentListNotes extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Toolbar toolbar = view.findViewById(R.id.toolbarMenu);
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_search:
+                        Toast.makeText(requireContext(), "search", Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.action_sort:
+                        Toast.makeText(requireContext(), "Сортировка", Toast.LENGTH_SHORT).show();
+                    case R.id.action_info:
+                        Toast.makeText(requireContext(), "info", Toast.LENGTH_SHORT).show();
+                }
+
+                return false;
+            }
+        });
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -9,4 +9,9 @@
     <string name="dataNew">Дата</string>
     <string name="descriptionNew">Подробнее</string>
     <string name="app_name_new">Редактирование</string>
+    <string name="action_info">info</string>
+    <string name="action_serch">search</string>
+    <string name="action_sort">sort</string>
+    <string name="action_share">share</string>
+    <string name="action_add">add photo</string>
 </resources>
