@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -72,6 +73,36 @@ public class FragmentDescriptionNotes extends Fragment {
         notes = getArguments().getParcelable(ARG_NOTES);
         etName.setText(notes.getName());
 
+        etName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                PopupMenu popupMenu = new PopupMenu(requireContext(), view);
+
+                requireActivity()
+                        .getMenuInflater()
+                        .inflate(R.menu.menu_pop_details, popupMenu.getMenu());
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch (menuItem.getItemId()) {
+                            case R.id.action_pop_copy:
+                                Toast.makeText(requireContext(), "Копировать", Toast.LENGTH_SHORT).show();
+                                return true;
+
+                            case R.id.action_pop_past:
+                                Toast.makeText(requireContext(), "Вставить", Toast.LENGTH_SHORT).show();
+                                return true;
+                        }
+
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
+
         TextView etDescription = view.findViewById(R.id.textDescription);
         notes = getArguments().getParcelable(ARG_NOTES);
         etDescription.setText(notes.getDescription());
@@ -79,5 +110,7 @@ public class FragmentDescriptionNotes extends Fragment {
         TextView etData = view.findViewById(R.id.textData);
         notes = getArguments().getParcelable(ARG_NOTES);
         etData.setText(notes.getData());
+
+
     }
 }

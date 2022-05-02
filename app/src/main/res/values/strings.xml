@@ -23,4 +23,6 @@
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
     <string name="action_notes">Заметки</string>
+    <string name="action_pop_copy">Копировать</string>
+    <string name="action_pop_past">Вставить</string>
 </resources>
