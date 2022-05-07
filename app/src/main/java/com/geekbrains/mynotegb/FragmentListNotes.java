@@ -15,6 +15,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.List;
 
 import domain.InMemoryNotesRepository;
@@ -49,12 +51,13 @@ public class FragmentListNotes extends Fragment {
                 switch (item.getItemId()) {
                     case R.id.action_search:
                         showDialogFragment();
-
                         return true;
                     case R.id.action_sort:
                         Toast.makeText(requireContext(), "Сортировка", Toast.LENGTH_SHORT).show();
+                        return true;
                     case R.id.action_info:
-                        Toast.makeText(requireContext(), "info", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(view, "Информация", Snackbar.LENGTH_SHORT).show();
+                        return true;
                 }
 
                 return false;
