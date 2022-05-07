@@ -25,4 +25,6 @@
     <string name="action_notes">Заметки</string>
     <string name="action_pop_copy">Копировать</string>
     <string name="action_pop_past">Вставить</string>
+    <string name="Search">Поиск</string>
+    <string name="dialog_fragment_view_hint">Hint</string>
 </resources>

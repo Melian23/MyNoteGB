@@ -48,7 +48,8 @@ public class FragmentListNotes extends Fragment {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_search:
-                        Toast.makeText(requireContext(), "search", Toast.LENGTH_SHORT).show();
+                        showDialogFragment();
+
                         return true;
                     case R.id.action_sort:
                         Toast.makeText(requireContext(), "Сортировка", Toast.LENGTH_SHORT).show();
@@ -57,6 +58,10 @@ public class FragmentListNotes extends Fragment {
                 }
 
                 return false;
+            }
+
+            private void showDialogFragment() {
+                new MyDialogFragment().show(getParentFragmentManager(), MyDialogFragment.TAG);
             }
         });
 //        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
