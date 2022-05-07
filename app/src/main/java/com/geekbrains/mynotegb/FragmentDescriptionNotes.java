@@ -50,6 +50,10 @@ public class FragmentDescriptionNotes extends Fragment {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.action_edit:
+                        //работает только в вертикальной ориентации
+                        new BottomSheetDialogFragment().show(getParentFragmentManager(), "");
+                        return true;
                     case R.id.action_share:
                         Toast.makeText(requireContext(), "Поделиться", Toast.LENGTH_SHORT).show();
                         return true;

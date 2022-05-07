@@ -27,4 +27,7 @@
     <string name="action_pop_past">Вставить</string>
     <string name="Search">Поиск</string>
     <string name="dialog_fragment_view_hint">Hint</string>
+    <string name="edit">Edit Note</string>
+    <string name="save">Сохранить</string>
+    <string name="cancel">Отменить</string>
 </resources>
