@@ -18,12 +18,12 @@ import java.util.Date;
 
 import domain.Notes;
 
-public class FragmentDescriptionNotes extends Fragment {
+public class DescriptionNotesFragment extends Fragment {
     public static final String ARG_NOTES = "notes";
     private Notes notes;
 
-    public static FragmentDescriptionNotes newInstance(Notes notes) {
-        FragmentDescriptionNotes fragment = new FragmentDescriptionNotes();
+    public static DescriptionNotesFragment newInstance(Notes notes) {
+        DescriptionNotesFragment fragment = new DescriptionNotesFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelable(ARG_NOTES, notes);
         fragment.setArguments(bundle);

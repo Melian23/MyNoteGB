@@ -16,13 +16,13 @@ import java.util.UUID;
 
 import domain.Notes;
 
-public class FragmentNewNote extends Fragment {
+public class NewNoteFragment extends Fragment {
 
     public static final String ARG_NOTES = "ARG_NOTES";
     Notes notes;
 
-    public static FragmentNewNote newInstance() {
-        FragmentNewNote fragment = new FragmentNewNote();
+    public static NewNoteFragment newInstance() {
+        NewNoteFragment fragment = new NewNoteFragment();
         Bundle args = new Bundle();
         args.putParcelable(ARG_NOTES, new Notes(UUID.randomUUID().toString(), "Заметка 1", "note", new Date()));
         fragment.setArguments(args);

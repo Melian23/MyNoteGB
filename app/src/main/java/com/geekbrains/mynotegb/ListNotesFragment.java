@@ -14,11 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -28,11 +25,11 @@ import java.util.List;
 import domain.InMemoryNotesRepository;
 import domain.Notes;
 
-public class FragmentListNotes extends Fragment {
+public class ListNotesFragment extends Fragment {
 
 
-    public static FragmentListNotes newInstance() {
-        FragmentListNotes fragment = new FragmentListNotes();
+    public static ListNotesFragment newInstance() {
+        ListNotesFragment fragment = new ListNotesFragment();
         return fragment;
     }
 
@@ -77,9 +74,9 @@ public class FragmentListNotes extends Fragment {
         notesList.setLayoutManager(new GridLayoutManager(requireContext(),
                 2));
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL);
-        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_divider));
-        notesList.addItemDecoration(dividerItemDecoration);
+//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL);
+//        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_divider));
+//        notesList.addItemDecoration(dividerItemDecoration);
 
         NotesAdapter adapter = new NotesAdapter();
         notesList.setAdapter(adapter);
@@ -88,7 +85,7 @@ public class FragmentListNotes extends Fragment {
             public void onNoteClicked(Notes notes) {
                 getParentFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.listNote, FragmentDescriptionNotes.newInstance(notes))
+                        .replace(R.id.listNote, DescriptionNotesFragment.newInstance(notes))
                         .addToBackStack("details")
                         .commit();
             }
@@ -108,7 +105,7 @@ public class FragmentListNotes extends Fragment {
 //                public void onClick(View view) {
 //                    getParentFragmentManager()
 //                            .beginTransaction()
-//                            .replace(R.id.listNote, FragmentDescriptionNotes.newInstance(note))
+//                            .replace(R.id.listNote, DescriptionNotesFragment.newInstance(note))
 //                            .addToBackStack("details")
 //                            .commit();
 //                }

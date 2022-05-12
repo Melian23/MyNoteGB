@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements ToolbarHolder {
 
                         getSupportFragmentManager()
                                 .beginTransaction()
-                                .replace(R.id.listNote, FragmentNewNote.newInstance())
+                                .replace(R.id.listNote, NewNoteFragment.newInstance())
                                 .addToBackStack("")
                                 .commit();
 
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements ToolbarHolder {
 
                         getSupportFragmentManager()
                                 .beginTransaction()
-                                .replace(R.id.listNote, new FragmentListNotes())
+                                .replace(R.id.listNote, new ListNotesFragment())
                                 .commit();
 
                         drawerLayout.close();
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements ToolbarHolder {
 
         if (savedInstanceState == null) {
 
-            FragmentListNotes listNotes = FragmentListNotes.newInstance();
+            ListNotesFragment listNotes = ListNotesFragment.newInstance();
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.listNote, listNotes)
@@ -140,7 +140,6 @@ public class MainActivity extends AppCompatActivity implements ToolbarHolder {
                     }
                 })
                 .show();
-
     }
 
     private void showDialogFragment() {
