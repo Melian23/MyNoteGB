@@ -14,7 +14,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -74,6 +76,10 @@ public class FragmentListNotes extends Fragment {
         RecyclerView notesList = view.findViewById(R.id.container_list);
         notesList.setLayoutManager(new GridLayoutManager(requireContext(),
                 2));
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL);
+        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_divider));
+        notesList.addItemDecoration(dividerItemDecoration);
 
         NotesAdapter adapter = new NotesAdapter();
         notesList.setAdapter(adapter);
