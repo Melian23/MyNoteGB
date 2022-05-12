@@ -1,25 +1,57 @@
 package com.geekbrains.mynotegb;
 
+import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements ToolbarHolder {
 
     DrawerLayout drawerLayout;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+                    case R.id.action_bottom_new:
+
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.listNote, FragmentNewNote.newInstance())
+                                .addToBackStack("")
+                                .commit();
+
+                        return true;
+
+                    case R.id.action_bottom_search:
+
+                        showDialogFragment();
+
+                        return true;
+                }
+
+                return false;
+            }
+        });
 
         drawerLayout = findViewById(R.id.drawer);
 
@@ -57,6 +89,13 @@ public class MainActivity extends AppCompatActivity implements ToolbarHolder {
 
                         drawerLayout.close();
                         return true;
+
+                    case R.id.action_exit:
+
+                        dialogExit();
+
+                        drawerLayout.close();
+                        return true;
                 }
                 return false;
             }
@@ -88,5 +127,23 @@ public class MainActivity extends AppCompatActivity implements ToolbarHolder {
 
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+    }
+
+    public void dialogExit() {
+        new AlertDialog.Builder(this)
+                .setTitle("Вы действительно хотите выйти из приложения?")
+                .setNegativeButton("Отмена", null)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .show();
+
+    }
+
+    private void showDialogFragment() {
+        new MyDialogFragment().show(getSupportFragmentManager(), MyDialogFragment.TAG);
     }
 }

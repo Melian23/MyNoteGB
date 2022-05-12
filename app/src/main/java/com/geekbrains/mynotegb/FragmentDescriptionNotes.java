@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import java.util.Date;
+
 import domain.Notes;
 
 public class FragmentDescriptionNotes extends Fragment {
@@ -111,9 +113,9 @@ public class FragmentDescriptionNotes extends Fragment {
         notes = getArguments().getParcelable(ARG_NOTES);
         etDescription.setText(notes.getDescription());
 
-        TextView etData = view.findViewById(R.id.textData);
+        TextView etDate = view.findViewById(R.id.textData);
         notes = getArguments().getParcelable(ARG_NOTES);
-        etData.setText(notes.getData());
+        etDate.setText (notes.getDate(new Date()).toString());
 
 
     }

@@ -29,7 +29,7 @@ public class MyDialogFragment extends DialogFragment {
         return new AlertDialog.Builder(requireContext())
                 .setCustomTitle(customTitle)
                 .setView(customView)
-                .setPositiveButton("Find", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.find, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Toast.makeText(requireContext(), editText.getText().toString(), Toast.LENGTH_SHORT).show();

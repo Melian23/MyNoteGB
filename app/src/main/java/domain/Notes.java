@@ -3,6 +3,8 @@ package domain;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Date;
+
 public class Notes implements Parcelable {
 
     public static final Creator<Notes> CREATOR = new Creator<Notes>() {
@@ -16,47 +18,42 @@ public class Notes implements Parcelable {
             return new Notes[size];
         }
     };
+    private String id;
     private String name;
     private String description;
-    private String data;
+    private Date date;
 
-    protected Notes(Parcel in) {
-        name = in.readString();
-        description = in.readString();
-        data = in.readString();
-    }
-
-    public Notes(String name, String data, String description) {
+    public Notes(String id, String name, String description, Date date) {
+        this.id = id;
         this.name = name;
         this.description = description;
-        this.data = data;
+        this.date = date;
     }
 
-    public Notes(int i) {
+    protected Notes(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        description = in.readString();
+    }
+
+    public static Creator<Notes> getCREATOR() {
+        return CREATOR;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
-
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public Date getDate(Date date) {
+        return this.date;
+    }
+
+    public String getId() {
+        return id;
     }
 
     @Override
@@ -66,8 +63,12 @@ public class Notes implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(id);
         parcel.writeString(name);
         parcel.writeString(description);
-        parcel.writeString(data);
+    }
+
+    public Date getDate() {
+        return date;
     }
 }

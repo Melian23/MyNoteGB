@@ -11,7 +11,7 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/NewName"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@+id/NewData"
@@ -22,7 +22,7 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/NewData"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
         app:layout_constraintBottom_toTopOf="@+id/NewDescription"
@@ -33,7 +33,7 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/NewDescription"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
         app:layout_constraintBottom_toTopOf="@+id/btn_bottom_sheet_dialog_cancel"

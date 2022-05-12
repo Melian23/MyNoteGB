@@ -8,7 +8,7 @@
     <string name="nameNew">Наименование</string>
     <string name="dataNew">Дата</string>
     <string name="descriptionNew">Подробнее</string>
-    <string name="app_name_new">Редактирование</string>
+    <string name="app_name_new">Создание заметки</string>
     <string name="action_info">info</string>
     <string name="action_serch">search</string>
     <string name="action_sort">sort</string>
@@ -16,7 +16,7 @@
     <string name="action_add">add photo</string>
     <string name="action_setting">Настройки</string>
     <string name="action_about">О приложении</string>
-    <string name="what_about">Как вам приложение?</string>
+    <string name="what_about">Оцените наше приложение</string>
     <string name="setting">Настройки</string>
     <string name="toolbar_about">О приложении</string>
     <string name="toolbar_setting">Настройки</string>
@@ -30,4 +30,8 @@
     <string name="edit">Edit Note</string>
     <string name="save">Сохранить</string>
     <string name="cancel">Отменить</string>
+    <string name="action_exit">Выйти</string>
+    <string name="action_bottom_search">Поиск</string>
+    <string name="action_bottom_new">Создать заметку</string>
+    <string name="find">Найти</string>
 </resources>
