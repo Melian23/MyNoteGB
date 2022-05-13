@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,7 +23,8 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
-import domain.InMemoryNotesRepository;
+import di.Dependencies;
+import domain.Callback;
 import domain.Notes;
 
 public class ListNotesFragment extends Fragment {
@@ -91,10 +93,25 @@ public class ListNotesFragment extends Fragment {
             }
         });
 
-        List<Notes> notes = InMemoryNotesRepository.getINSTANCE(requireContext()).getAll();
-        adapter.setData(notes);
+        ProgressBar progressBar = view.findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.VISIBLE);
 
-        adapter.notifyDataSetChanged();
+        Dependencies.NOTES_REPOSITORY.getAll(new Callback<List<Notes>>() {
+            @Override
+            public void onSuccess(List<Notes> result) {
+                adapter.setData(result);
+
+                adapter.notifyDataSetChanged();
+
+                progressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onError(Throwable exception) {
+
+                progressBar.setVisibility(View.GONE);
+            }
+        });
 
 //        LinearLayout container = view.findViewById(R.id.container_list);
 //        for (Notes note : notes) {
@@ -110,7 +127,6 @@ public class ListNotesFragment extends Fragment {
 //                            .commit();
 //                }
 //            });
-
 //            Button btnDelete = view.findViewById(R.id.delete);
 //            btnDelete.setOnClickListener(new View.OnClickListener() {
 //                @Override
@@ -118,8 +134,6 @@ public class ListNotesFragment extends Fragment {
 //
 //                }
 //            });
-
-
     }
 }
 
