@@ -45,14 +45,6 @@ public class NewNoteFragment extends Fragment {
         if (requireActivity() instanceof ToolbarHolder)
             ((ToolbarHolder) requireContext()).setToolbar(toolbar);
 
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                getParentFragmentManager()
-//                        .popBackStack();
-//            }
-//        });
-
         TextView etNewName = view.findViewById(R.id.NewName);
         etNewName.setText("");
 

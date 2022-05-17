@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -59,18 +60,12 @@ public class ListNotesFragment extends Fragment {
                         Toast.makeText(requireContext(), "Сортировка", Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.action_info:
-                        Snackbar.make(view, "Информация", Snackbar.LENGTH_SHORT).setAnchorView(view).show();
+                        Snackbar.make(view, "Поделиться", Snackbar.LENGTH_SHORT).setAnchorView(view).show();
                         return true;
                 }
                 return false;
             }
         });
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(requireContext(), "Меню", Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
         RecyclerView notesList = view.findViewById(R.id.container_list);
         notesList.setLayoutManager(new GridLayoutManager(requireContext(),
@@ -82,6 +77,29 @@ public class ListNotesFragment extends Fragment {
 
         NotesAdapter adapter = new NotesAdapter();
         notesList.setAdapter(adapter);
+
+        getParentFragmentManager()
+                .setFragmentResultListener(AddNoteBottomSheetDialogFragment.KEY_RESULT, getViewLifecycleOwner(), new FragmentResultListener() {
+                    @Override
+                    public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                        Notes note = result.getParcelable(AddNoteBottomSheetDialogFragment.ARG_NOTE);
+
+                        int index = adapter.addNote(note);
+
+                        adapter.notifyItemInserted(index);
+
+                        notesList.smoothScrollToPosition(index);
+                    }
+                });
+
+        view.findViewById(R.id.add).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AddNoteBottomSheetDialogFragment()
+                        .show(getParentFragmentManager(), "AddNoteBottomSheetDialogFragment");
+            }
+        });
+
         adapter.setNoteClicked(new NotesAdapter.OnNoteClicked() {
             @Override
             public void onNoteClicked(Notes notes) {
@@ -112,28 +130,6 @@ public class ListNotesFragment extends Fragment {
                 progressBar.setVisibility(View.GONE);
             }
         });
-
-//        LinearLayout container = view.findViewById(R.id.container_list);
-//        for (Notes note : notes) {
-//
-//            container.addView(itemView);
-//            itemView.findViewById(R.id.card_view).setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    getParentFragmentManager()
-//                            .beginTransaction()
-//                            .replace(R.id.listNote, DescriptionNotesFragment.newInstance(note))
-//                            .addToBackStack("details")
-//                            .commit();
-//                }
-//            });
-//            Button btnDelete = view.findViewById(R.id.delete);
-//            btnDelete.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//
-//                }
-//            });
     }
 }
 

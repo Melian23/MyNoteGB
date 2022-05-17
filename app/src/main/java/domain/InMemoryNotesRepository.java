@@ -17,20 +17,16 @@ public class InMemoryNotesRepository implements NotesRepository {
     private Handler handler = new Handler(Looper.getMainLooper());
 
     public InMemoryNotesRepository() {
-        result.add(new Notes(UUID.randomUUID().toString(), "Заметка1", "Первая заметка", new Date()));
-        result.add(new Notes(UUID.randomUUID().toString(), "Заметка 2", "Вторая заметка", new Date()));
-        result.add(new Notes(UUID.randomUUID().toString(), "Заметка 3", "Третья заметка", new Date()));
-        result.add(new Notes(UUID.randomUUID().toString(), "Заметка 4", "Четвертая заметка", new Date()));
-        result.add(new Notes(UUID.randomUUID().toString(), "Заметка 5", "Пятая заметка", new Date()));
-        result.add(new Notes(UUID.randomUUID().toString(), "Заметка 6", "Шестая заметка", new Date()));
-        result.add(new Notes(UUID.randomUUID().toString(), "Заметка 7", "Седьмая заметка", new Date()));
-        result.add(new Notes(UUID.randomUUID().toString(), "Заметка 8", "Восьмая заметка", new Date()));
-        result.add(new Notes(UUID.randomUUID().toString(), "Заметка 9", "Девятая заметка", new Date()));
+
 
     }
 
     @Override
     public void getAll(Callback<List<Notes>> callback) {
+
+            ArrayList<Notes> result = new ArrayList<>();
+
+            result.add(new Notes(UUID.randomUUID().toString(), "Заметка 1", "Описание заметки", new Date()));
 
         executor.execute(new Runnable() {
             @Override
@@ -47,14 +43,33 @@ public class InMemoryNotesRepository implements NotesRepository {
                         callback.onSuccess(result);
                     }
                 });
-
             }
         });
-
     }
 
     @Override
-    public void add(Notes note) {
+    public void addNote(String title, String details, Callback<Notes> callback) {
 
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        Notes note = new Notes(UUID.randomUUID().toString(), title, details, new Date());
+
+        result.add(note);
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                callback.onSuccess(note);
+            }
+        });
     }
 }

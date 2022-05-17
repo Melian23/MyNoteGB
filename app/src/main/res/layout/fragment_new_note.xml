@@ -14,7 +14,7 @@
             android:id="@+id/toolbarNewNote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="@string/app_name_new" />
+            app:title="@string/app_name_info" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -56,7 +56,6 @@
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/NewData"
             app:layout_constraintVertical_bias="0.053"

@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements ToolbarHolder {
 
                         return true;
                 }
-
                 return false;
             }
         });
@@ -131,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements ToolbarHolder {
 
     public void dialogExit() {
         new AlertDialog.Builder(this)
-                .setTitle("Вы действительно хотите выйти из приложения?")
+                .setTitle(R.string.exit)
                 .setNegativeButton("Отмена", null)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
