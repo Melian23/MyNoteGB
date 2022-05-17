@@ -1,4 +1,28 @@
 <resources>
     <string name="app_name">MyNoteGB</string>
     <string name="def">Тост</string>
+    <string name="data">Дата заметки</string>
+    <string name="name">Название заметки</string>
+    <string name="description">Описание</string>
+    <string name="app_title">Блокнот</string>
+    <string name="nameNew">Наименование</string>
+    <string name="dataNew">Дата</string>
+    <string name="descriptionNew">Подробнее</string>
+    <string name="app_name_new">Редактирование</string>
+    <string name="action_info">info</string>
+    <string name="action_serch">search</string>
+    <string name="action_sort">sort</string>
+    <string name="action_share">share</string>
+    <string name="action_add">add photo</string>
+    <string name="action_setting">Настройки</string>
+    <string name="action_about">О приложении</string>
+    <string name="what_about">Как вам приложение?</string>
+    <string name="setting">Настройки</string>
+    <string name="toolbar_about">О приложении</string>
+    <string name="toolbar_setting">Настройки</string>
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
+    <string name="action_notes">Заметки</string>
+    <string name="action_pop_copy">Копировать</string>
+    <string name="action_pop_past">Вставить</string>
 </resources>
