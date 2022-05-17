@@ -2,6 +2,7 @@ package com.geekbrains.mynotegb;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -38,12 +39,32 @@ public class FragmentListNotes extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Toolbar toolbar = view.findViewById(R.id.toolbarMenu);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+
+        if (requireActivity() instanceof ToolbarHolder)
+            ((ToolbarHolder) requireContext()).setToolbar(toolbar);
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
-            public void onClick(View view) {
-                Toast.makeText(requireContext(), "Меню", Toast.LENGTH_SHORT).show();
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_search:
+                        Toast.makeText(requireContext(), "search", Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.action_sort:
+                        Toast.makeText(requireContext(), "Сортировка", Toast.LENGTH_SHORT).show();
+                    case R.id.action_info:
+                        Toast.makeText(requireContext(), "info", Toast.LENGTH_SHORT).show();
+                }
+
+                return false;
             }
         });
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(requireContext(), "Меню", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         Button btnNew = view.findViewById(R.id.newNote);
         btnNew.setOnClickListener(new View.OnClickListener() {

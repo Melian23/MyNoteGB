@@ -5,10 +5,17 @@
       <map>
         <entry key="..\:/Users/79607/Desktop/STUDY/MyNoteGB/app/src/main/res/layout/111.xml" value="0.2210144927536232" />
         <entry key="..\:/Users/79607/Desktop/STUDY/MyNoteGB/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/79607/Desktop/STUDY/MyNoteGB/app/src/main/res/layout/fragment_about.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/79607/Desktop/STUDY/MyNoteGB/app/src/main/res/layout/fragment_description_notes.xml" value="0.12605042016806722" />
         <entry key="..\:/Users/79607/Desktop/STUDY/MyNoteGB/app/src/main/res/layout/fragment_list_notes.xml" value="0.15706806282722513" />
         <entry key="..\:/Users/79607/Desktop/STUDY/MyNoteGB/app/src/main/res/layout/fragment_new_note.xml" value="0.2210144927536232" />
+        <entry key="..\:/Users/79607/Desktop/STUDY/MyNoteGB/app/src/main/res/layout/fragment_setting.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/79607/Desktop/STUDY/MyNoteGB/app/src/main/res/layout/item_nav_drawer.xml" value="0.2210144927536232" />
         <entry key="..\:/Users/79607/Desktop/STUDY/MyNoteGB/app/src/main/res/layout/item_note.xml" value="0.1765625" />
+        <entry key="..\:/Users/79607/Desktop/STUDY/MyNoteGB/app/src/main/res/menu/menu_main.xml" value="0.18981481481481483" />
+        <entry key="..\:/Users/79607/Desktop/STUDY/MyNoteGB/app/src/main/res/menu/menu_nav_drawer.xml" value="0.18981481481481483" />
+        <entry key="..\:/Users/79607/Desktop/STUDY/MyNoteGB/app/src/main/res/menu/menu_note_details.xml" value="0.18981481481481483" />
+        <entry key="..\:/Users/79607/Desktop/STUDY/MyNoteGB/app/src/main/res/menu/menu_pop_details.xml" value="0.18981481481481483" />
       </map>
     </option>
   </component>
