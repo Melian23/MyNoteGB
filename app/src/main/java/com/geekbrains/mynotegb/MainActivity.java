@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity implements ToolbarHolder {
 
     DrawerLayout drawerLayout;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,19 +32,15 @@ public class MainActivity extends AppCompatActivity implements ToolbarHolder {
 
                 switch (item.getItemId()) {
                     case R.id.action_bottom_new:
-
                         getSupportFragmentManager()
                                 .beginTransaction()
                                 .replace(R.id.listNote, NewNoteFragment.newInstance())
                                 .addToBackStack("")
                                 .commit();
-
                         return true;
 
                     case R.id.action_bottom_search:
-
                         showDialogFragment();
-
                         return true;
                 }
                 return false;
@@ -63,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements ToolbarHolder {
 
                         getSupportFragmentManager()
                                 .beginTransaction()
-                                .replace(R.id.listNote, new AboutFragment())
+                                .replace(R.id.listNote, new InfoFragment())
                                 .commit();
 
                         drawerLayout.close();
@@ -90,7 +85,6 @@ public class MainActivity extends AppCompatActivity implements ToolbarHolder {
                         return true;
 
                     case R.id.action_exit:
-
                         dialogExit();
 
                         drawerLayout.close();

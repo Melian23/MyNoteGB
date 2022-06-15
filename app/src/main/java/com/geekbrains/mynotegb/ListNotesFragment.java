@@ -5,7 +5,9 @@ package com.geekbrains.mynotegb;
  */
 
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +32,10 @@ import domain.Notes;
 
 public class ListNotesFragment extends Fragment {
 
+    ProgressBar progressBar;
+    private Notes selectedNote;
+    private int selectedPosition;
+    private NotesAdapter adapter;
 
     public static ListNotesFragment newInstance() {
         ListNotesFragment fragment = new ListNotesFragment();
@@ -71,11 +77,7 @@ public class ListNotesFragment extends Fragment {
         notesList.setLayoutManager(new GridLayoutManager(requireContext(),
                 2));
 
-//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL);
-//        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_divider));
-//        notesList.addItemDecoration(dividerItemDecoration);
-
-        NotesAdapter adapter = new NotesAdapter();
+        adapter = new NotesAdapter(this);
         notesList.setAdapter(adapter);
 
         getParentFragmentManager()
@@ -91,6 +93,7 @@ public class ListNotesFragment extends Fragment {
                         notesList.smoothScrollToPosition(index);
                     }
                 });
+
 
         view.findViewById(R.id.add).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,9 +112,15 @@ public class ListNotesFragment extends Fragment {
                         .addToBackStack("details")
                         .commit();
             }
+
+            @Override
+            public void onNoteLongClicked(Notes notes, int position) {
+                selectedNote = notes;
+                selectedPosition = position;
+            }
         });
 
-        ProgressBar progressBar = view.findViewById(R.id.progress_bar);
+        progressBar = view.findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
 
         Dependencies.NOTES_REPOSITORY.getAll(new Callback<List<Notes>>() {
@@ -130,6 +139,46 @@ public class ListNotesFragment extends Fragment {
                 progressBar.setVisibility(View.GONE);
             }
         });
+    }
+
+    @Override
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        MenuInflater menuInflater = requireActivity().getMenuInflater();
+        menuInflater.inflate(R.menu.menu_notes_context, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_edit:
+                Toast.makeText(requireContext(), "Редактировать", Toast.LENGTH_LONG).show();
+                return true;
+
+            case R.id.action_delete:
+
+                progressBar.setVisibility(View.VISIBLE);
+
+                Dependencies.NOTES_REPOSITORY.removeNote(selectedNote, new Callback<Void>() {
+                    @Override
+                    public void onSuccess(Void result) {
+
+                        progressBar.setVisibility(View.GONE);
+                        adapter.removeNote(selectedNote);
+                        adapter.notifyItemRemoved(selectedPosition);
+                    }
+
+                    @Override
+                    public void onError(Throwable exception) {
+                        progressBar.setVisibility(View.GONE);
+                    }
+                });
+
+                return true;
+        }
+
+        return super.onContextItemSelected(item);
     }
 }
 

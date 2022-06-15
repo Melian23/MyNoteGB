@@ -21,7 +21,6 @@ public class AddNoteBottomSheetDialogFragment extends BottomSheetDialogFragment 
     public static final String ARG_NOTE = "ARG_NOTE";
     public static final String KEY_RESULT = "AddNoteBottomSheetDialogFragment_KEY_RESULT";
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ public class AddNoteBottomSheetDialogFragment extends BottomSheetDialogFragment 
             @Override
             public void onClick(View view) {
 
-                btnSave.setEnabled(false);
+                btnSave.setEnabled(false); // блокировка ввода, нажатия на кнопку
 
                 Dependencies.NOTES_REPOSITORY.addNote(title.getText().toString(),
                         details.getText().toString(), new Callback<Notes>() {
@@ -66,7 +65,7 @@ public class AddNoteBottomSheetDialogFragment extends BottomSheetDialogFragment 
             }
         });
 
-        view.findViewById(R.id.cancle).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dismiss();

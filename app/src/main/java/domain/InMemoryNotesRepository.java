@@ -13,34 +13,38 @@ import java.util.concurrent.Executors;
 public class InMemoryNotesRepository implements NotesRepository {
 
     private ArrayList<Notes> result = new ArrayList<>();
+    // однопоточный исполнитель (Executor) если задач будет много - они будут выполняться последовательно
     private Executor executor = Executors.newSingleThreadExecutor();
-    private Handler handler = new Handler(Looper.getMainLooper());
+    private Handler handler = new Handler(Looper.getMainLooper()); //средство для доставки сообщений какому нибудь потоку
 
     public InMemoryNotesRepository() {
-
-
     }
 
     @Override
     public void getAll(Callback<List<Notes>> callback) {
 
-            ArrayList<Notes> result = new ArrayList<>();
+        ArrayList<Notes> result = new ArrayList<>();
 
-            result.add(new Notes(UUID.randomUUID().toString(), "Заметка 1", "Описание заметки", new Date()));
+        result.add(new Notes(UUID.randomUUID().toString(), "Заметка 1", "Описание заметки", new Date()));
+
+//            for (int i=1; i<3000;i++ ){
+//                result.add(new Notes(UUID.randomUUID().toString(), "Title", "Message", new Date()));
+//            }
 
         executor.execute(new Runnable() {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(2000L);
+                    Thread.sleep(1000L);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 
-                handler.post(new Runnable() {
+                handler.post(new Runnable() { //для выполнения в основном потоке
+
                     @Override
                     public void run() {
-                        callback.onSuccess(result);
+                        callback.onSuccess(result); // если все хорошо, список заметок (result) получен
                     }
                 });
             }
@@ -72,4 +76,29 @@ public class InMemoryNotesRepository implements NotesRepository {
             }
         });
     }
-}
+
+    @Override
+    public void removeNote(Notes notes, Callback<Void> callback) {
+
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        result.remove(notes);
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                callback.onSuccess(null);
+            }
+        });
+    }
+    }
+

@@ -36,4 +36,6 @@
     <string name="title">Заголовок</string>
     <string name="details">Описание</string>
     <string name="exit">Вы действительно хотите выйти из приложения?</string>
+    <string name="action_edit">Редактировать</string>
+    <string name="action_delete">Удалить</string>
 </resources>

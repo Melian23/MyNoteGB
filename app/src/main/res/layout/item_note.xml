@@ -55,19 +55,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/note_details"
                 tools:text="22:22" />
 
-            <!--            <com.google.android.material.button.MaterialButton-->
-            <!--                android:id="@+id/delete"-->
-            <!--                android:layout_width="50dp"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginStart="30dp"-->
-            <!--                app:icon="@drawable/ic_baseline_delete_24"-->
-            <!--                app:iconGravity="textStart"-->
-            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintStart_toEndOf="@+id/note_name"-->
-            <!--                app:layout_constraintTop_toTopOf="parent" />-->
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </FrameLayout>
