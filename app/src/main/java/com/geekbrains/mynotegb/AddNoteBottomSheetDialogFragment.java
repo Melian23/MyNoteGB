@@ -19,7 +19,22 @@ import domain.Notes;
 public class AddNoteBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
     public static final String ARG_NOTE = "ARG_NOTE";
-    public static final String KEY_RESULT = "AddNoteBottomSheetDialogFragment_KEY_RESULT";
+    public static final String ADD_KEY_RESULT = "AddNoteBottomSheetDialogFragment_ADD_KEY_RESULT";
+    public static final String UPDATE_KEY_RESULT = "AddNoteBottomSheetDialogFragment_UPDATE_KEY_RESULT";
+
+
+    public static AddNoteBottomSheetDialogFragment addInstance() {
+        return new AddNoteBottomSheetDialogFragment();
+    }
+
+    public static AddNoteBottomSheetDialogFragment editInstance(Notes notes) {
+
+        Bundle args = new Bundle();
+        args.putParcelable(ARG_NOTE, notes);
+        AddNoteBottomSheetDialogFragment fragment = new AddNoteBottomSheetDialogFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Nullable
     @Override
@@ -31,37 +46,73 @@ public class AddNoteBottomSheetDialogFragment extends BottomSheetDialogFragment 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Notes noToEdit = null;
+
+        if (getArguments() != null && getArguments().containsKey(ARG_NOTE)) {
+            noToEdit = getArguments().getParcelable(ARG_NOTE);
+        }
+
         EditText title = view.findViewById(R.id.title);
         EditText details = view.findViewById(R.id.details);
 
+        if (noToEdit != null){
+            title.setText(noToEdit.getName());
+            details.setText(noToEdit.getDescription());
+        }
 
         Button btnSave = view.findViewById(R.id.save);
 
+        Notes finalNoToEdit = noToEdit;
+        Notes finalNoToEdit1 = noToEdit;
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 btnSave.setEnabled(false); // блокировка ввода, нажатия на кнопку
 
-                Dependencies.NOTES_REPOSITORY.addNote(title.getText().toString(),
-                        details.getText().toString(), new Callback<Notes>() {
-                            @Override
-                            public void onSuccess(Notes result) {
+                if (finalNoToEdit != null){
+                    Dependencies.NOTES_REPOSITORY.upDateNote(finalNoToEdit, title.getText().toString(),
+                            details.getText().toString(), new Callback<Notes>() {
+                                @Override
+                                public void onSuccess(Notes result) {
 
-                                Bundle bundle = new Bundle();
-                                bundle.putParcelable(ARG_NOTE, result);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putParcelable(ARG_NOTE, result);
+                                    getParentFragmentManager().setFragmentResult(UPDATE_KEY_RESULT, bundle);
 
-                                getParentFragmentManager().setFragmentResult(KEY_RESULT, bundle);
+                                    btnSave.setEnabled(true);
+                                    dismiss();
+                                }
 
-                                btnSave.setEnabled(true);
-                                dismiss();
-                            }
+                                @Override
+                                public void onError(Throwable exception) {
 
-                            @Override
-                            public void onError(Throwable exception) {
-                                btnSave.setEnabled(true);
-                            }
-                        });
+                                    btnSave.setEnabled(true);
+                                }
+                            });
+
+                } else {
+
+                    Dependencies.NOTES_REPOSITORY.addNote(title.getText().toString(),
+                            details.getText().toString(), new Callback<Notes>() {
+                                @Override
+                                public void onSuccess(Notes result) {
+
+                                    Bundle bundle = new Bundle();
+                                    bundle.putParcelable(ARG_NOTE, result);
+
+                                    getParentFragmentManager().setFragmentResult(ADD_KEY_RESULT, bundle);
+
+                                    btnSave.setEnabled(true);
+                                    dismiss();
+                                }
+
+                                @Override
+                                public void onError(Throwable exception) {
+                                    btnSave.setEnabled(true);
+                                }
+                            });
+                }
             }
         });
 

@@ -77,6 +77,10 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         data.remove(selectedNote);
     }
 
+    public void replaceNote(Notes note, int selectedPosition) {
+        data.set (selectedPosition, note);
+    }
+
     interface OnNoteClicked {
         void onNoteClicked(Notes notes);
 

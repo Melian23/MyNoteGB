@@ -25,7 +25,7 @@ public class InMemoryNotesRepository implements NotesRepository {
 
         ArrayList<Notes> result = new ArrayList<>();
 
-        result.add(new Notes(UUID.randomUUID().toString(), "Заметка 1", "Описание заметки", new Date()));
+  //      result.add(new Notes(UUID.randomUUID().toString(), "Заметка 1", "Описание заметки", new Date()));
 
 //            for (int i=1; i<3000;i++ ){
 //                result.add(new Notes(UUID.randomUUID().toString(), "Title", "Message", new Date()));
@@ -100,5 +100,34 @@ public class InMemoryNotesRepository implements NotesRepository {
             }
         });
     }
+
+    @Override
+    public void upDateNote(Notes notes, String title, String details, Callback<Notes> callback) {
+
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        Notes newNote = new Notes(notes.getId(), title, details, notes.getCreatedAt());
+
+        int index = result.indexOf(notes);
+        result.set(index, newNote);
+
+        result.remove(notes);
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                callback.onSuccess(newNote);
+            }
+        });
     }
+}
 

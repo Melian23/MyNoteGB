@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -80,8 +81,13 @@ public class ListNotesFragment extends Fragment {
         adapter = new NotesAdapter(this);
         notesList.setAdapter(adapter);
 
+        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+        defaultItemAnimator.setAddDuration(2000L);
+        defaultItemAnimator.setRemoveDuration(2000L);
+        notesList.setItemAnimator(defaultItemAnimator);
+
         getParentFragmentManager()
-                .setFragmentResultListener(AddNoteBottomSheetDialogFragment.KEY_RESULT, getViewLifecycleOwner(), new FragmentResultListener() {
+                .setFragmentResultListener(AddNoteBottomSheetDialogFragment.ADD_KEY_RESULT, getViewLifecycleOwner(), new FragmentResultListener() {
                     @Override
                     public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                         Notes note = result.getParcelable(AddNoteBottomSheetDialogFragment.ARG_NOTE);
@@ -94,11 +100,22 @@ public class ListNotesFragment extends Fragment {
                     }
                 });
 
+        getParentFragmentManager()
+                .setFragmentResultListener(AddNoteBottomSheetDialogFragment.UPDATE_KEY_RESULT, getViewLifecycleOwner(), new FragmentResultListener() {
+                    @Override
+                    public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                        Notes note = result.getParcelable(AddNoteBottomSheetDialogFragment.ARG_NOTE);
+
+                        adapter.replaceNote(note, selectedPosition);
+
+                        adapter.notifyItemChanged(selectedPosition);
+                    }
+                });
 
         view.findViewById(R.id.add).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AddNoteBottomSheetDialogFragment()
+                AddNoteBottomSheetDialogFragment.addInstance()
                         .show(getParentFragmentManager(), "AddNoteBottomSheetDialogFragment");
             }
         });
@@ -153,7 +170,8 @@ public class ListNotesFragment extends Fragment {
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_edit:
-                Toast.makeText(requireContext(), "Редактировать", Toast.LENGTH_LONG).show();
+                AddNoteBottomSheetDialogFragment.editInstance(selectedNote)
+                        .show(getParentFragmentManager(), "AddNoteBottomSheetDialogFragment");
                 return true;
 
             case R.id.action_delete:

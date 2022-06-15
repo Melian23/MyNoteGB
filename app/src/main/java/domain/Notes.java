@@ -85,4 +85,8 @@ public class Notes implements Parcelable {
     public int hashCode() {
         return Objects.hash(id, name, description, date);
     }
+
+    public Date getCreatedAt() {
+       return date;
+    }
 }
