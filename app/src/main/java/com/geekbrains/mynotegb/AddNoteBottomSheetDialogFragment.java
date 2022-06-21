@@ -22,7 +22,6 @@ public class AddNoteBottomSheetDialogFragment extends BottomSheetDialogFragment 
     public static final String ADD_KEY_RESULT = "AddNoteBottomSheetDialogFragment_ADD_KEY_RESULT";
     public static final String UPDATE_KEY_RESULT = "AddNoteBottomSheetDialogFragment_UPDATE_KEY_RESULT";
 
-
     public static AddNoteBottomSheetDialogFragment addInstance() {
         return new AddNoteBottomSheetDialogFragment();
     }
@@ -55,7 +54,7 @@ public class AddNoteBottomSheetDialogFragment extends BottomSheetDialogFragment 
         EditText title = view.findViewById(R.id.title);
         EditText details = view.findViewById(R.id.details);
 
-        if (noToEdit != null){
+        if (noToEdit != null) {
             title.setText(noToEdit.getName());
             details.setText(noToEdit.getDescription());
         }
@@ -70,7 +69,7 @@ public class AddNoteBottomSheetDialogFragment extends BottomSheetDialogFragment 
 
                 btnSave.setEnabled(false); // блокировка ввода, нажатия на кнопку
 
-                if (finalNoToEdit != null){
+                if (finalNoToEdit != null) {
                     Dependencies.NOTES_REPOSITORY.upDateNote(finalNoToEdit, title.getText().toString(),
                             details.getText().toString(), new Callback<Notes>() {
                                 @Override
