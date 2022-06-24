@@ -140,7 +140,7 @@ public class ListNotesFragment extends Fragment {
         progressBar = view.findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
 
-        Dependencies.getNotesRepository(requireContext()).getAll(new Callback<List<Notes>>() {
+        Dependencies.getNotesRepository().getAll(new Callback<List<Notes>>() {
             @Override
             public void onSuccess(List<Notes> result) {
                 adapter.setData(result);
@@ -178,7 +178,7 @@ public class ListNotesFragment extends Fragment {
 
                 progressBar.setVisibility(View.VISIBLE);
 
-                Dependencies.getNotesRepository(requireContext()).removeNote(selectedNote, new Callback<Void>() {
+                Dependencies.getNotesRepository().removeNote(selectedNote, new Callback<Void>() {
                     @Override
                     public void onSuccess(Void result) {
 

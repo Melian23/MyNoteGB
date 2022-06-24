@@ -1,19 +1,14 @@
 package di;
 
-import android.content.Context;
-
-import domain.InMemoryNotesRepository;
+import domain.FaireStoreNotesRepository;
 import domain.NotesRepository;
-import domain.SharedPrefNotesRepository;
 
 public class Dependencies {
 
-    public static NotesRepository notesRepository;
+    public static NotesRepository NOTES_REPOSITORY = new FaireStoreNotesRepository();
 
-    public static NotesRepository getNotesRepository (Context context){
-        if (notesRepository == null){
-            notesRepository = new SharedPrefNotesRepository(context);
-        }
-        return notesRepository;
+    public static NotesRepository getNotesRepository() {
+
+        return NOTES_REPOSITORY;
     }
 }
