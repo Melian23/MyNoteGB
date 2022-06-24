@@ -70,7 +70,7 @@ public class AddNoteBottomSheetDialogFragment extends BottomSheetDialogFragment 
                 btnSave.setEnabled(false); // блокировка ввода, нажатия на кнопку
 
                 if (finalNoToEdit != null) {
-                    Dependencies.NOTES_REPOSITORY.upDateNote(finalNoToEdit, title.getText().toString(),
+                    Dependencies.getNotesRepository(requireContext()).upDateNote(finalNoToEdit, title.getText().toString(),
                             details.getText().toString(), new Callback<Notes>() {
                                 @Override
                                 public void onSuccess(Notes result) {
@@ -92,7 +92,7 @@ public class AddNoteBottomSheetDialogFragment extends BottomSheetDialogFragment 
 
                 } else {
 
-                    Dependencies.NOTES_REPOSITORY.addNote(title.getText().toString(),
+                    Dependencies.getNotesRepository(requireContext()).addNote(title.getText().toString(),
                             details.getText().toString(), new Callback<Notes>() {
                                 @Override
                                 public void onSuccess(Notes result) {

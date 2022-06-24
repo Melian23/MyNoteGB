@@ -19,6 +19,7 @@ public class Notes implements Parcelable {
             return new Notes[size];
         }
     };
+
     private String id;
     private String name;
     private String description;
