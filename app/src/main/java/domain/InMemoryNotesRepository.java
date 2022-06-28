@@ -25,12 +25,6 @@ public class InMemoryNotesRepository implements NotesRepository {
 
         ArrayList<Notes> result = new ArrayList<>();
 
-  //      result.add(new Notes(UUID.randomUUID().toString(), "Заметка 1", "Описание заметки", new Date()));
-
-//            for (int i=1; i<3000;i++ ){
-//                result.add(new Notes(UUID.randomUUID().toString(), "Title", "Message", new Date()));
-//            }
-
         executor.execute(new Runnable() {
             @Override
             public void run() {

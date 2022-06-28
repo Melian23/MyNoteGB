@@ -1,9 +1,14 @@
 package di;
 
-import domain.InMemoryNotesRepository;
+import domain.FaireStoreNotesRepository;
 import domain.NotesRepository;
 
 public class Dependencies {
 
-    public static final NotesRepository NOTES_REPOSITORY = new InMemoryNotesRepository();
+    public static NotesRepository NOTES_REPOSITORY = new FaireStoreNotesRepository();
+
+    public static NotesRepository getNotesRepository() {
+
+        return NOTES_REPOSITORY;
+    }
 }

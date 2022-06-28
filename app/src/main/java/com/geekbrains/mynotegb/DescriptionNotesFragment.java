@@ -117,7 +117,7 @@ public class DescriptionNotesFragment extends Fragment {
 
         TextView etDate = view.findViewById(R.id.textData);
         notes = getArguments().getParcelable(ARG_NOTES);
-        etDate.setText (notes.getDate(new Date()).toString());
+     //   etDate.setD (notes.getDate(new Date()).toString());
 
 
     }
