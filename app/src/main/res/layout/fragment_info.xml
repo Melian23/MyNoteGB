@@ -12,17 +12,18 @@
             android:id="@+id/toolbarAbout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="@string/toolbar_about"/>
+            app:title="@string/toolbar_about" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <TextView
             android:id="@+id/text_what_about"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/what_about"
@@ -36,8 +37,8 @@
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginTop="250dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
@@ -53,7 +54,7 @@
                 android:id="@+id/like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:icon="@drawable/ic_baseline_favorite_24"
+                app:icon="@drawable/ic_baseline_emoji_emotions_24"
                 app:iconGravity="top" />
 
             <com.google.android.material.button.MaterialButton
@@ -61,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin"
-                app:icon="@drawable/ic_baseline_favorite_border_24"
+                app:icon="@drawable/ic_baseline_mood_bad_24"
                 app:iconGravity="top" />
 
         </LinearLayout>

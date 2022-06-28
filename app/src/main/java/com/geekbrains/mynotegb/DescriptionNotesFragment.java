@@ -14,14 +14,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
+import java.util.Date;
+
 import domain.Notes;
 
-public class FragmentDescriptionNotes extends Fragment {
+public class DescriptionNotesFragment extends Fragment {
     public static final String ARG_NOTES = "notes";
     private Notes notes;
 
-    public static FragmentDescriptionNotes newInstance(Notes notes) {
-        FragmentDescriptionNotes fragment = new FragmentDescriptionNotes();
+    public static DescriptionNotesFragment newInstance(Notes notes) {
+        DescriptionNotesFragment fragment = new DescriptionNotesFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelable(ARG_NOTES, notes);
         fragment.setArguments(bundle);
@@ -50,6 +54,10 @@ public class FragmentDescriptionNotes extends Fragment {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.action_edit:
+                        //работает только в вертикальной ориентации
+                        new BottomSheetDialogFragment().show(getParentFragmentManager(), "");
+                        return true;
                     case R.id.action_share:
                         Toast.makeText(requireContext(), "Поделиться", Toast.LENGTH_SHORT).show();
                         return true;
@@ -107,9 +115,9 @@ public class FragmentDescriptionNotes extends Fragment {
         notes = getArguments().getParcelable(ARG_NOTES);
         etDescription.setText(notes.getDescription());
 
-        TextView etData = view.findViewById(R.id.textData);
+        TextView etDate = view.findViewById(R.id.textData);
         notes = getArguments().getParcelable(ARG_NOTES);
-        etData.setText(notes.getData());
+        etDate.setText (notes.getDate(new Date()).toString());
 
 
     }

@@ -14,7 +14,7 @@
             android:id="@+id/toolbarNewNote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="@string/app_name_new" />
+            app:title="@string/app_name_info" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -22,13 +22,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".FragmentNewNote"
+        tools:context=".NewNoteFragment"
         android:background="@color/white"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/NewName"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toTopOf="@+id/NewData"
@@ -39,7 +39,7 @@
 
         <TextView
             android:id="@+id/NewData"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="500dp"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
@@ -51,12 +51,11 @@
 
         <TextView
             android:id="@+id/NewDescription"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/NewData"
             app:layout_constraintVertical_bias="0.053"

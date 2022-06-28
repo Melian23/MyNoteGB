@@ -8,5 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_yellow">#BCB6A6</color>
-    <color name="grey">#AFAFAF</color>
+    <color name="grey">#525252</color>
+    <color name="grey_500">#202020</color>
+    <color name="grey_100">#BCBCBC</color>
+    <color name="grey_200">#838383</color>
+
 </resources>

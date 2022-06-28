@@ -11,17 +11,20 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import java.util.Date;
+import java.util.UUID;
+
 import domain.Notes;
 
-public class FragmentNewNote extends Fragment {
+public class NewNoteFragment extends Fragment {
 
     public static final String ARG_NOTES = "ARG_NOTES";
     Notes notes;
 
-    public static FragmentNewNote newInstance() {
-        FragmentNewNote fragment = new FragmentNewNote();
+    public static NewNoteFragment newInstance() {
+        NewNoteFragment fragment = new NewNoteFragment();
         Bundle args = new Bundle();
-        args.putParcelable(ARG_NOTES, new Notes("New", "2222", "note"));
+        args.putParcelable(ARG_NOTES, new Notes(UUID.randomUUID().toString(), "Заметка 1", "note", new Date()));
         fragment.setArguments(args);
         return fragment;
     }
@@ -41,14 +44,6 @@ public class FragmentNewNote extends Fragment {
 
         if (requireActivity() instanceof ToolbarHolder)
             ((ToolbarHolder) requireContext()).setToolbar(toolbar);
-
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                getParentFragmentManager()
-//                        .popBackStack();
-//            }
-//        });
 
         TextView etNewName = view.findViewById(R.id.NewName);
         etNewName.setText("");
