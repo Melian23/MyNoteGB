@@ -11,7 +11,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentResultListener;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
@@ -24,6 +26,14 @@ public class MainActivity extends AppCompatActivity implements ToolbarHolder {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getSupportFragmentManager()
+                .setFragmentResultListener(AuthFragment.KEY_RESULT_AUTHORIZED, this, new FragmentResultListener() {
+                    @Override
+                    public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                        showNotes();
+                    }
+                });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -76,10 +86,11 @@ public class MainActivity extends AppCompatActivity implements ToolbarHolder {
 
                     case R.id.action_notes:
 
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.listNote, new ListNotesFragment())
-                                .commit();
+                        if (isAuthorized()) {
+                            showNotes();
+                        } else {
+                            showAuth();
+                        }
 
                         drawerLayout.close();
                         return true;
@@ -95,12 +106,11 @@ public class MainActivity extends AppCompatActivity implements ToolbarHolder {
         });
 
         if (savedInstanceState == null) {
-
-            ListNotesFragment listNotes = ListNotesFragment.newInstance();
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.listNote, listNotes)
-                    .commit();
+            if (isAuthorized()) {
+                showNotes();
+            } else {
+                showAuth();
+            }
 
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
@@ -137,5 +147,23 @@ public class MainActivity extends AppCompatActivity implements ToolbarHolder {
 
     private void showDialogFragment() {
         new MyDialogFragment().show(getSupportFragmentManager(), MyDialogFragment.TAG);
+    }
+
+    private void showNotes() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.listNote, new ListNotesFragment())
+                .commit();
+    }
+
+    private void showAuth() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.listNote, new AuthFragment())
+                .commit();
+    }
+
+    private boolean isAuthorized() {
+        return GoogleSignIn.getLastSignedInAccount(this) != null;
     }
 }

@@ -59,7 +59,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
         holder.title.setText(note.getName());
         holder.details.setText(note.getDescription());
-        holder.date.setText(simpleDateFormat.format(note.getDate()));
+      //  holder.date.setText(simpleDateFormat.format(note.getDate()));
     }
 
     @Override
